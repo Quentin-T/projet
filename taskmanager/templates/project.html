@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends "./template.html" %}
 
-    <style>
-        table, th, td {
-            border: 1px solid darkgrey;
-            border-collapse: collapse;
-            font-size: x-large;
-        }
-        th, td {
-            padding: 10px;
-        }
-
-    </style>
-</head>
+{% block content %}
 <h1>{{ project.name }}</h1>
 <table>
     <tr>
@@ -34,7 +19,5 @@
     </tr>
     {% endfor %}
 </table>
-<body>
 
-</body>
-</html>
+{% endblock %}

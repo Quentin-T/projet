@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid darkgrey;
+            border-collapse: collapse;
+            font-size: x-large;
+        }
+        th, td {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+<h1>Calend-me</h1>
+<p>A cool app to plan stuff</p>
+<p>Welcome {{ request.user.username }}</p>
+<a href="{% url 'logout' %}">
+    <img src="{% static 'taskmanager/logout.png' %}" height="3%" width="3%" "logout"/>
+</a>
+{% block content %}{% endblock %}
+</body>
+</html>
