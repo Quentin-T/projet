@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid darkgrey;
+            border-collapse: collapse;
+            font-size: x-large;
+        }
+        th, td {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<h1>{{ project.name }}</h1>
+<table>
+    <tr>
+        <th>Task</th>
+        <th>Assignee</th>
+        <th>Start date</th>
+        <th>Due date</th>
+    </tr>
+
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.assignee }}</td>
+        <td>{{ task.start_date }}</td>
+        <td>{{ task.due_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<body>
+
+</body>
+</html>
