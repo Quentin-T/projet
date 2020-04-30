@@ -4,28 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Projet</title>
-
-    <style>
-        table, th, td {
-            border: 1px solid darkgrey;
-            border-collapse: collapse;
-            font-size: x-large;
-        }
-        th, td {
-            padding: 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 
 <body>
-<h1>Calend-me</h1>
-<p>A cool app to plan stuff</p>
-<p>Welcome {{ request.user.username }}</p>
-<a href="{% url 'logout' %}">
-    <img src="{% static 'taskmanager/logout.png' %}" height="3%" width="3%" "logout"/>
-</a>
+<div class="jumbotron">
+    <h1 class="display-1">Calend-me</h1>
+    <h3 >A cool app to plan stuff</h3>
+    <hr class="my-3">
+    <div class="row">
+        <div class="col-11">
+            <h4>Welcome {{ request.user.username }}</h4>
+        </div>
+        <div class="col-1">
+            <a href="{% url "logout" %}">
+            <img src="{% static 'taskmanager/logout.png' %}" width="70px"/>
+            </a>
+        </div>
+    </div>
+</div>
+
+
 {% block content %}{% endblock %}
 </body>
 </html>

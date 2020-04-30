@@ -1,11 +1,13 @@
 {% extends "./template.html" %}
 
 {% block content %}
-<table>
-    {% for projet in projets %}
-        <td><a href="{% url "project" id=projet.id%}">{{ projet.name }}</a></td>
-    {% endfor %}
+    <div class="container-fluid">
+    <h1 class="display-4">Projets</h1>
+    <div class="list-group">
+        {% for projet in projets %}
+            <a href="{% url "project" id=projet.id%}" class="list-group-item">{{ projet.name }}</a>
+        {% endfor %}
 
-</table>
-
+    </div>
+    </div>
 {% endblock %}
