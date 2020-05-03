@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <form class="form-check" method="post" enctype="multipart/form-data" action="{%  url "newComment" id=id%}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit"/>
+        </form>
+        </form>
+    </div>
+{% endblock %}

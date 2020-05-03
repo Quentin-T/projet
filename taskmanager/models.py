@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 # Create your models here.
@@ -45,10 +46,13 @@ class Task(models.Model):
 
 class Journal(models.Model):
     # la date du commentaire
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
     # le commentaire
     entry = models.CharField(max_length=300)
     # l'auteur du commentaire
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # la tahce concernée
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['date']

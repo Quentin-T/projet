@@ -9,7 +9,9 @@
                 <p>{{ tk.description }}</p>
             </div>
             <div class="col-1">
-            <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
+                <a href="{% url "newComment" id=tk.id%}">
+                <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
+                </a>
             </div>
         </div>
 
