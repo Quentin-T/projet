@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Project, Task, Status, Journal
-from .forms import JournalForm
+from .forms import JournalForm, TaskForm
+
 
 # Create your views here.
 @login_required
@@ -34,3 +35,18 @@ def newComment(request, id):
     return render(request, "newComment.html", locals())
 
 
+def newtask(request, id):
+    form = TaskForm(request.POST or None)
+
+    if form.is_valid():
+        task = Task(projet=Project.objects.get(id=id))
+        task.name = form.cleaned_data['name']
+        task.assignee = form.cleaned_data['assignee']
+        task.description = form.cleaned_data['description']
+        task.start_date = form.cleaned_data['start_date']
+        task.due_date = form.cleaned_data['due_date']
+        task.priority = form.cleaned_data['priority']
+        task.status = form.cleaned_data['status']
+        task.save()
+        return redirect("task", task.id)
+    return render(request, "newtask.html", locals())
