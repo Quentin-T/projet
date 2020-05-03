@@ -1,0 +1,48 @@
+{% extends "./template.html" %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-11">
+                <h1>{{ tk.projet.name }}</h1>
+                <h2>{{ tk.name }}</h2>
+                <p>{{ tk.description }}</p>
+            </div>
+            <div class="col-1">
+            <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
+            </div>
+        </div>
+
+        <table class="table border-bottom border-top">
+            <tr>
+                <th>Assignee</th>
+                <td>{{ tk.assignee }}</td>
+            </tr>
+            <tr>
+                <th>Start date</th>
+                <td>{{ tk.start_date }}</td>
+            </tr>
+            <tr>
+                <th>Due date</th>
+                <td>{{ tk.due_date }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ tk.status }}</td>
+            </tr>
+        </table>
+
+        <h4>History</h4>
+        <table class="table border-bottom">
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.author }}  {{ comment.date }}</td>
+                    <td>{{ comment.entry }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+
+{% endblock %}
