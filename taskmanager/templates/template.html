@@ -21,9 +21,11 @@
 
         </div>
         <div class="col-1">
+            {% if request.user.is_authenticated %}
             <a href="{% url "logout" %}">
                 <img src="{% static 'taskmanager/logout.png' %}" width="70px"/>
             </a>
+            {% endif %}
         </div>
     </div>
 </div>

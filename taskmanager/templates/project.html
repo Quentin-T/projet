@@ -31,7 +31,7 @@
             {% for task in tasks %}
                 <tr>
                     <td><a href="{% url "task" task_id=task.id %}">{{ task.name }}</a></td>
-                    <td>{{ task.assignee }}</td>
+                    <td><kbd class="bg-primary">{{ task.assignee }}</kbd></td>
                     <td>{{ task.start_date|date:"d M Y" }}</td>
                     <td>{{ task.due_date|date:"d M Y" }} </td>
                     <td><a href={% url "edittask" task_id=task.id %}>
