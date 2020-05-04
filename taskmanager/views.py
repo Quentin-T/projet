@@ -50,3 +50,19 @@ def newtask(request, id):
         task.save()
         return redirect("task", task.id)
     return render(request, "newtask.html", locals())
+
+def edittask(request, id):
+    task = Task.objects.get(id=id)
+    form = TaskForm(request.POST or None, instance=task)
+
+    if form.is_valid():
+        task.name = form.cleaned_data['name']
+        task.assignee = form.cleaned_data['assignee']
+        task.description = form.cleaned_data['description']
+        task.start_date = form.cleaned_data['start_date']
+        task.due_date = form.cleaned_data['due_date']
+        task.priority = form.cleaned_data['priority']
+        task.status = form.cleaned_data['status']
+        task.save()
+        return redirect("task", task.id)
+    return render(request, "edittask.html", locals())
