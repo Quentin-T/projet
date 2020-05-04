@@ -9,7 +9,7 @@
                 <p>{{ tk.description }}</p>
             </div>
             <div class="col-1">
-                <a href="{% url "newComment" id=tk.id%}">
+                <a href="{% url "newjournal" task_id=tk.id%}">
                 <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
                 </a>
             </div>

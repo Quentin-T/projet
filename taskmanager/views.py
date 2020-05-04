@@ -11,35 +11,35 @@ def projects(request):
     return render(request,"projects.html", {'projets':request.user.project_set.all(), 'User':request.user})
 
 
-def project(request, id):
+def project(request, proj_id):
     "affichage des différentes taches d'un projet précis"
-    proj= Project.objects.get(id=id)
+    proj= Project.objects.get(id=proj_id)
     return render(request,"project.html", {'project':proj,'tasks':proj.task_set.all()})
 
-def task(request, id):
+def task(request, task_id):
     "affichage des détails d'une tache"
-    tk = Task.objects.get(id=id)
+    tk = Task.objects.get(id=task_id)
     comments = tk.journal_set.all()
     return render(request,"task.html", locals())
 
-def newComment(request, id):
+def newjournal(request, task_id):
     form = JournalForm(request.POST or None)
 
     if form.is_valid():
         journal = Journal()
         journal.author = request.user
         journal.entry = form.cleaned_data["entry"]
-        journal.task = Task.objects.get(id=id)
+        journal.task = Task.objects.get(id=task_id)
         journal.save()
-        return redirect("task",id)
-    return render(request, "newComment.html", locals())
+        return redirect("task",task_id)
+    return render(request, "newjournal.html", locals())
 
 
-def newtask(request, id):
+def newtask(request, proj_id):
     form = TaskForm(request.POST or None)
 
     if form.is_valid():
-        task = Task(projet=Project.objects.get(id=id))
+        task = Task(projet=Project.objects.get(id=proj_id))
         task.name = form.cleaned_data['name']
         task.assignee = form.cleaned_data['assignee']
         task.description = form.cleaned_data['description']
@@ -51,8 +51,8 @@ def newtask(request, id):
         return redirect("task", task.id)
     return render(request, "newtask.html", locals())
 
-def edittask(request, id):
-    task = Task.objects.get(id=id)
+def edittask(request, task_id):
+    task = Task.objects.get(id=task_id)
     form = TaskForm(request.POST or None, instance=task)
 
     if form.is_valid():

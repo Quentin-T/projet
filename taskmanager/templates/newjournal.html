@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <form class="form-check" method="post" enctype="multipart/form-data" action="{%  url "newComment" id=id%}">
+        <form class="form-check" method="post" enctype="multipart/form-data" action="{%  url "newjournal" task_id=task_id%}">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit"/>
