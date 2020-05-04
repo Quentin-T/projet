@@ -1,16 +1,23 @@
 {% extends "./template.html" %}
 {% load static %}
 {% block content %}
+    <div class="jumbotron p-2 h2">
+        <a href="{% url "projects" %}">Projets</a>
+        <a href="{% url "project" proj_id=task.projet.id %}"> / {{ task.projet.name }}</a>
+        <a href="{% url "task" task_id=task_id %}"> / {{ task.name }}</a>
+    </div>
+
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-11">
-                <h1>{{ tk.projet.name }}</h1>
-                <h2>{{ tk.name }}</h2>
-                <p>{{ tk.description }}</p>
+                <h1>{{ task.projet.name }}</h1>
+                <h2>{{ task.name }}</h2>
+                <p>{{ task.description }}</p>
             </div>
             <div class="col-1">
-                <a href="{% url "newjournal" task_id=tk.id%}">
-                <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
+                <a href="{% url "newjournal" task_id=task.id %}">
+                    <img src="{% static 'taskmanager/edition.png' %}" width="70px"/>
                 </a>
             </div>
         </div>
@@ -18,11 +25,11 @@
         <table class="table border-bottom border-top">
             <tr>
                 <th>Assignee</th>
-                <td>{{ tk.assignee }}</td>
+                <td>{{ task.assignee }}</td>
             </tr>
             <tr>
                 <th>Start date</th>
-                <td>{{ tk.start_date }}</td>
+                <td>{{ task.start_date }}</td>
             </tr>
             <tr>
                 <th>Due date</th>
@@ -30,7 +37,7 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ tk.status }}</td>
+                <td>{{ task.status }}</td>
             </tr>
         </table>
 
@@ -38,7 +45,7 @@
         <table class="table border-bottom">
             {% for comment in comments %}
                 <tr>
-                    <td>{{ comment.author }}  {{ comment.date }}</td>
+                    <td>{{ comment.author }} {{ comment.date }}</td>
                     <td>{{ comment.entry }}</td>
                 </tr>
             {% endfor %}

@@ -1,39 +1,45 @@
 {% extends "./template.html" %}
 {% load static %}
+
 {% block content %}
-    <div class="container-fluid">
-    <div class="row">
-        <div class="col-11">
-             <h1>{{ project.name }}</h1>
-        </div>
-        <div class="col-1">
-            <a href="{% url "newtask" proj_id=project.id %}">
-                <img src="{% static 'taskmanager/add.png' %}" width="60px"/>
-        </a>
-        </div>
+    <div class="jumbotron p-2 h2">
+        <a href="{% url "projects" %}">Projets</a>
+        <a href="{% url "project" proj_id=project.id %}"> / {{ project.name }}</a>
     </div>
 
-<table class="table border-bottom border-top">
-    <tr class="table-secondary">
-        <th>Task</th>
-        <th>Assignee</th>
-        <th>Start date</th>
-        <th>Due date</th>
-        <th></th>
-    </tr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-11">
+                <h1>{{ project.name }}</h1>
+            </div>
+            <div class="col-1">
+                <a href="{% url "newtask" proj_id=project.id %}">
+                    <img src="{% static 'taskmanager/add.png' %}" width="60px"/>
+                </a>
+            </div>
+        </div>
 
-    {% for task in tasks %}
-    <tr>
-        <td><a href="{% url "task" task_id=task.id %}">{{ task.name }}</a></td>
-        <td>{{ task.assignee }}</td>
-        <td>{{ task.start_date|date:"d M Y" }}</td>
-        <td>{{ task.due_date|date:"d M Y" }} </td>
-        <td><a href={% url "edittask" task_id=task.id %}>
-                <img src="{% static 'taskmanager/edition.png' %}" width="24px"/>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+        <table class="table border-bottom border-top">
+            <tr class="table-secondary">
+                <th>Task</th>
+                <th>Assignee</th>
+                <th>Start date</th>
+                <th>Due date</th>
+                <th></th>
+            </tr>
+
+            {% for task in tasks %}
+                <tr>
+                    <td><a href="{% url "task" task_id=task.id %}">{{ task.name }}</a></td>
+                    <td>{{ task.assignee }}</td>
+                    <td>{{ task.start_date|date:"d M Y" }}</td>
+                    <td>{{ task.due_date|date:"d M Y" }} </td>
+                    <td><a href={% url "edittask" task_id=task.id %}>
+                        <img src="{% static 'taskmanager/edition.png' %}" width="24px"/>
+                    </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 {% endblock %}

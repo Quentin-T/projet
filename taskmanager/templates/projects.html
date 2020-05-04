@@ -1,13 +1,18 @@
 {% extends "./template.html" %}
 
 {% block content %}
-    <div class="container-fluid">
-    <h1 class="display-4">Projets</h1>
-    <div class="list-group">
-        {% for projet in projets %}
-            <a href="{% url "project" proj_id=projet.id%}" class="list-group-item">{{ projet.name }}</a>
-        {% endfor %}
-
+    <div class="jumbotron p-2 h2">
+        <a href="{% url "projects" %}">Projets</a>
     </div>
+
+
+    <div class="container-fluid">
+        <h1 class="display-4">Projets</h1>
+        <div class="list-group">
+            {% for projet in projets %}
+                <a href="{% url "project" proj_id=projet.id %}" class="list-group-item">{{ projet.name }}</a>
+            {% endfor %}
+
+        </div>
     </div>
 {% endblock %}

@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 {% extends "template.html" %}
 {% block content %}
+    <div class="jumbotron p-2 h2">
+        <a href="{% url "projects" %}">Projets</a>
+        <a href="{% url "project" proj_id=task.projet.id %}"> / {{ task.projet.name }}</a>
+        <a href="{% url "task" task_id=task_id %}"> / {{ task.name }}</a>
+    </div>
+
+
+
     <div class="container-fluid">
-        <form class="form-check" method="post" enctype="multipart/form-data" action="{%  url "edittask" task_id=task_id%}">
+        <form class="form-check" method="post" enctype="multipart/form-data"
+              action="{% url "edittask" task_id=task_id %}">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit"/>

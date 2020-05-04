@@ -30,7 +30,7 @@ class Task(models.Model):
     # le nom de la tache
     name = models.CharField(max_length=200)
     # une description de la tache
-    description = models.CharField(max_length = 2000)
+    description = models.CharField(max_length=2000)
     # l'utilisateur assigne à la tache
     assignee = models.ForeignKey(User, on_delete=models.CASCADE)
     # date de début de la tache
@@ -44,6 +44,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Journal(models.Model):
     # la date du commentaire

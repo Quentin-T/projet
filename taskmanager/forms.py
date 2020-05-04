@@ -7,6 +7,7 @@ class JournalForm(forms.ModelForm):
         model = Journal
         fields = ['entry']
 
+
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
