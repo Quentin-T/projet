@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ task.status }}</td>
+                <td><kbd class="bg-warning">{{ task.status }}</kbd></td>
             </tr>
         </table>
     </div>
@@ -47,7 +47,7 @@
         <table class="table border-bottom">
             {% for comment in comments %}
                 <tr>
-                    <td>{{ comment.author }} {{ comment.date }}</td>
+                    <td><kbd class="bg-primary">{{ comment.author }}</kbd> {{ comment.date }}</td>
                     <td>{{ comment.entry }}</td>
                 </tr>
             {% endfor %}
