@@ -1,6 +1,12 @@
+{% comment %}
+Ce template est celui de la page d'accueil une fois la connexion effectuée.
+Il affiche la liste des projets de l'utilisateur
+{% endcomment %}
+
 {% extends "./template.html" %}
 
 {% block content %}
+    {# ce jumbotron permet la navigation entre les différentes pages du projet #}
     <div class="jumbotron p-2 h2">
         <a href="{% url "projects" %}">Projets</a>
     </div>
@@ -8,7 +14,7 @@
 
     <div class="container-fluid">
         <h1 class="display-4">Projets</h1>
-        <div class="list-group">
+        <div class="list-group h4">
             {% for projet in projets %}
                 <a href="{% url "project" proj_id=projet.id %}" class="list-group-item">{{ projet.name }}</a>
             {% endfor %}

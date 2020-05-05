@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import DateInput
 from django.utils import timezone
 
 
 # Create your models here.
 
+
 class Project(models.Model):
-    # le nom du projet
+    """le nom du projet"""
     name = models.CharField(max_length=200)
-    # les utilisateurs qui participent au projet
+    """les utilisateurs qui participent au projet"""
     members = models.ManyToManyField(User)
 
     def __str__(self):
@@ -17,7 +17,7 @@ class Project(models.Model):
 
 
 class Status(models.Model):
-    # le nom du statut
+    """le nom du statut"""
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -25,21 +25,21 @@ class Status(models.Model):
 
 
 class Task(models.Model):
-    # le projet auquel la tache est rattachée
+    """le projet auquel la tache est rattachée"""
     projet = models.ForeignKey(Project, on_delete=models.CASCADE)
-    # le nom de la tache
+    """le nom de la tache"""
     name = models.CharField(max_length=200)
-    # une description de la tache
+    """une description de la tache"""
     description = models.CharField(max_length=2000)
-    # l'utilisateur assigne à la tache
+    """l'utilisateur assigne à la tache"""
     assignee = models.ForeignKey(User, on_delete=models.CASCADE)
-    # date de début de la tache
+    """date de début de la tache"""
     start_date = models.DateTimeField()
-    # date de fin de la tache
+    """date de fin de la tache"""
     due_date = models.DateTimeField()
-    # priorité de la tache
+    """priorité de la tache"""
     priority = models.IntegerField()
-    # statut de la tache
+    """statut de la tache"""
     status = models.ForeignKey(Status, on_delete=models.DO_NOTHING)
 
     def __str__(self):
@@ -47,14 +47,15 @@ class Task(models.Model):
 
 
 class Journal(models.Model):
-    # la date du commentaire
+    """la date du commentaire"""
     date = models.DateTimeField(default=timezone.now)
-    # le commentaire
+    """le commentaire"""
     entry = models.CharField(max_length=300)
-    # l'auteur du commentaire
+    """l'auteur du commentaire"""
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # la tahce concernée
+    """la tahce concernée"""
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 
+    "on classe les entrées de la plus ancienne à la plus récente"
     class Meta:
         ordering = ['date']

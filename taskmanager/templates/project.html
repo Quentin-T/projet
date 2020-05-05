@@ -1,7 +1,12 @@
+{% comment %}
+Ce template affiche la liste des tâches d'un projet et quelques détails de ces tâches
+{% endcomment %}
+
 {% extends "./template.html" %}
 {% load static %}
 
 {% block content %}
+    {# ce jumbotron permet la navigation entre les différentes pages du projet #}
     <div class="jumbotron p-2 h2">
         <a href="{% url "projects" %}">Projets</a>
         <a href="{% url "project" proj_id=project.id %}"> / {{ project.name }}</a>
@@ -12,6 +17,7 @@
             <div class="col-11">
                 <h1>{{ project.name }}</h1>
             </div>
+            {# l'incone sur laquelle on peut cliquer pour créer une nouvelle tâche #}
             <div class="col-1">
                 <a href="{% url "newtask" proj_id=project.id %}">
                     <img src="{% static 'taskmanager/add.png' %}" width="60px"/>
@@ -19,8 +25,9 @@
             </div>
         </div>
 
+
         <table class="table border-bottom border-top">
-            <tr class="table-secondary">
+            <tr class="table-secondary h4">
                 <th>Task</th>
                 <th>Assignee</th>
                 <th>Start date</th>
@@ -30,10 +37,11 @@
 
             {% for task in tasks %}
                 <tr>
-                    <td><a href="{% url "task" task_id=task.id %}">{{ task.name }}</a></td>
+                    <td><a class="h4" href="{% url "task" task_id=task.id %}">{{ task.name }}</a></td>
                     <td><kbd class="bg-primary">{{ task.assignee }}</kbd></td>
-                    <td>{{ task.start_date|date:"d M Y" }}</td>
-                    <td>{{ task.due_date|date:"d M Y" }} </td>
+                    <td><i>{{ task.start_date|date:"d M Y" }}</i></td>
+                    <td><i>{{ task.due_date|date:"d M Y" }}</i></td>
+                    {# l'icone sur laquelle on peut cliquer pour éditer une tâche #}
                     <td><a href={% url "edittask" task_id=task.id %}>
                         <img src="{% static 'taskmanager/edition.png' %}" width="24px"/>
                     </a>

@@ -1,6 +1,11 @@
-{% extends "template.html" %}
+{% comment %}
+Le template qui est affiché pour créer une nouvelle entrée dans le journal
+{% endcomment %}
 
+{% extends "template.html" %}
+{% load bootstrap4 %}
 {% block content %}
+    {# ce jumbotron permet la navigation entre les différentes pages du projet #}
     <div class="jumbotron p-2 h2">
         <a href="{% url "projects" %}">Projets</a>
         <a href="{% url "project" proj_id=task.projet.id %}"> / {{ task.projet.name }}</a>
@@ -10,12 +15,11 @@
 
 
     <div class="container-fluid">
-        <form class="form-check" method="post" enctype="multipart/form-data"
+        <form method="post" enctype="multipart/form-data"
               action="{% url "newjournal" task_id=task_id %}">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit"/>
-        </form>
+            {% bootstrap_form form layout="horizontal" %}
+            <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>
 {% endblock %}
